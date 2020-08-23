@@ -9,8 +9,9 @@ import com.tproject.os.domain.model.Client;
 
 
 @Repository
-public interface ClientRespository extends JpaRepository<Client, Long> {
+public interface ClientRepository extends JpaRepository<Client, Long> {
 	
 	List<Client> findByName(String nome);
 	List<Client> findByNameContaining(String nome);
+	Client findByEmail(String email);
 }

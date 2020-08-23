@@ -19,15 +19,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.tproject.os.domain.model.Client;
-import com.tproject.os.domain.repository.ClientRespository;
+import com.tproject.os.domain.repository.ClientRepository;
+import com.tproject.os.domain.service.ClientRegistrationService;
 
 @RestController
 @RequestMapping("/clientes")
 public class ClientController {	
 
+	@Autowired
+	private ClientRegistrationService clientRegistration;
 	
 	@Autowired
-	private ClientRespository clientRepository;
+	private ClientRepository clientRepository;
 	
 	@GetMapping
 	public List<Client> showClients() {
@@ -49,7 +52,7 @@ public class ClientController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Client addClient(@Valid @RequestBody Client client) {
-		return clientRepository.save(client);
+		return clientRegistration.save(client);
 		
 	};
 
@@ -59,7 +62,7 @@ public class ClientController {
 			return ResponseEntity.notFound().build();
 		}
 		client.setId(clientId);
-		clientRepository.save(client);
+		client = clientRegistration.save(client);
 		
 		return ResponseEntity.ok(client);
 	}
@@ -69,7 +72,7 @@ public class ClientController {
 			return ResponseEntity.notFound().build();
 		}
 		
-		clientRepository.deleteById(clientId);
+		clientRegistration.delete(clientId);
 		return ResponseEntity.noContent().build();
 	}
 }
