@@ -1,6 +1,6 @@
 package com.tproject.os.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 		var problem = new Problem();
 		problem.setStatus(status.value());
 		problem.setTitle(ex.getMessage());
-		problem.setDateAndHour(LocalDateTime.now());
+		problem.setDateAndHour(OffsetDateTime.now());
 		
 		return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
 	}
@@ -52,7 +52,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	
 		var problem = new Problem();
 		problem.setStatus(status.value());
-		problem.setDateAndHour(LocalDateTime.now());
+		problem.setDateAndHour(OffsetDateTime.now());
 		problem.setTitle("Um ou mais campos estão inválidos. "
 				+ "Faça o preenchimento correto e tente novamente");
 		problem.setFields(fields);

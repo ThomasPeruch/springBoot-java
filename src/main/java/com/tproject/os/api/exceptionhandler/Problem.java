@@ -1,6 +1,6 @@
 package com.tproject.os.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Problem {
 	
 	private Integer status;
-	private LocalDateTime dateAndHour;
+	private OffsetDateTime dateAndHour;
 	private String title;
 	private List<Field> fields;
 	
@@ -43,10 +43,10 @@ public class Problem {
 	public void setStatus(Integer status) {
 		this.status = status;
 	}
-	public LocalDateTime getDateAndHour() {
+	public OffsetDateTime getDateAndHour() {
 		return dateAndHour;
 	}
-	public void setDateAndHour(LocalDateTime dateAndHour) {
+	public void setDateAndHour(OffsetDateTime dateAndHour) {
 		this.dateAndHour = dateAndHour;
 	}
 	public String getTitle() {
@@ -62,14 +62,10 @@ public class Problem {
 		this.fields = fields;
 	}
 	
-	public Problem(Integer status, LocalDateTime dateAndHour, String title) {
+	public Problem(Integer status, OffsetDateTime dateAndHour, String title) {
 		this.status = status;
 		this.dateAndHour = dateAndHour;
 		this.title = title;
 	}
 	public Problem() {}
-	
-	
-	
-
 }
